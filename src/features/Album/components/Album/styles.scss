@@ -1,0 +1,22 @@
+.album {
+  &__thumbnail {
+    width: 190px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+
+    & > img {
+      width: 100%;
+      border-radius: 0.5rem;
+      transition: transform 0.7s;
+
+      &:hover {
+        transform: scale(1.1) translateZ(0);
+      }
+    }
+  }
+
+  &__name {
+    font-weight: bold;
+    margin: 0;
+  }
+}
