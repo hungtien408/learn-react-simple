@@ -30,6 +30,7 @@ function App() {
           Switch chỉ render route match lần đầu, tránh render duplicate 
         */}
       <Switch>
+        <Route path="/" component={TodoFeature} exact />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/albums" component={AlbumFeature} />
       </Switch>
