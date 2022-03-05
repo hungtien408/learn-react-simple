@@ -1,4 +1,4 @@
-import { Link, NavLink, Route } from 'react-router-dom';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AlbumFeature from './features/Album';
 import TodoFeature from './features/Todo';
@@ -26,8 +26,13 @@ function App() {
         <NavLink to="/albums">Albums</NavLink>
       </p>
 
-      <Route path="/todos" component={TodoFeature} />
-      <Route path="/albums" component={AlbumFeature} />
+      {/*
+          Switch chỉ render route match lần đầu, tránh render duplicate 
+        */}
+      <Switch>
+        <Route path="/todos" component={TodoFeature} />
+        <Route path="/albums" component={AlbumFeature} />
+      </Switch>
     </div>
   );
 }
