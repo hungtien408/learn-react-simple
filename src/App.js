@@ -1,3 +1,4 @@
+import { Redirect } from 'react-router-dom';
 import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AlbumFeature from './features/Album';
@@ -30,6 +31,9 @@ function App() {
           Switch chỉ render route match lần đầu, tránh render duplicate 
         */}
       <Switch>
+        <Redirect from="/home" to="/" exact />
+        <Redirect from="/post-list/:postId" to="/posts/:postId" />
+
         <Route path="/" component={TodoFeature} exact />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/albums" component={AlbumFeature} />
