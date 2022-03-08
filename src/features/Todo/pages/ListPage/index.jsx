@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import TodoList from '../../components/TodoList';
+import queryString from 'query-string';
 
 ListPage.propTypes = {};
 
@@ -13,7 +15,7 @@ function ListPage() {
     {
       id: 2,
       title: 'Sleep',
-      status: 'new',
+      status: 'completed',
     },
     {
       id: 3,
@@ -22,9 +24,12 @@ function ListPage() {
     },
   ];
 
+  const location = useLocation();
   const [todoList, setTotoList] = useState(initTodoList);
-
-  const [filteredStatus, setFilteredStatus] = useState('all');
+  const [filteredStatus, setFilteredStatus] = useState(() => {
+    const params = queryString.parse(location.search);
+    return params.status || 'all';
+  });
 
   const handleTodoClick = (idx) => {
     const newTodoList = [...todoList];
