@@ -6,14 +6,16 @@ import * as yup from 'yup';
 import InputField from '../../../../components/form-controls/InputField';
 
 TodoForm.propTypes = {
-  onSumit: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 TodoForm.defaultProps = {
-  onSumit: null,
+  onSubmit: null,
 };
 
 function TodoForm(props) {
+  const { onSubmit } = props;
+
   const schema = yup.object().shape({
     title: yup.string().required('Please enter title').min(5, 'Title is too short'),
   });
@@ -26,7 +28,10 @@ function TodoForm(props) {
   });
 
   const handleSubmit = (values) => {
-    console.log('TODO FORM: ', values);
+    if (onSubmit) {
+      onSubmit(values);
+    }
+    form.reset();
   };
 
   return (
