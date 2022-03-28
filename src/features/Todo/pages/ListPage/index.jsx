@@ -2,6 +2,7 @@ import queryString from 'query-string';
 import React, { useEffect, useState, useMemo } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import TodoForm from '../../components/TodoForm';
 import TodoList from '../../components/TodoList';
 
 ListPage.propTypes = {};
@@ -79,8 +80,15 @@ function ListPage() {
     return todoList.filter((x) => filteredStatus === 'all' || filteredStatus === x.status);
   }, [todoList, filteredStatus]);
 
+  const handleTodoFormSubmit = (values) => {
+    console.log('Form submit: ', values);
+  };
+
   return (
     <div>
+      <h3>What to do</h3>
+      <TodoForm onSumit={handleTodoFormSubmit} />
+
       <h3>Todo List</h3>
       <TodoList todoList={renderTodoList} onTodoClick={handleTodoClick} />
 
