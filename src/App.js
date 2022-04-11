@@ -4,6 +4,7 @@ import productApi from './api/productApi';
 import './App.css';
 import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album';
+import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/" component={TodoFeature} exact />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/albums" component={AlbumFeature} />
+        <Route path="/counters" component={CounterFeature} />
 
         <Route component={NotFound} />
       </Switch>
