@@ -6,6 +6,15 @@ import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album';
 import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
+import styled from 'styled-components';
+
+// CSS in JS
+const Title = styled.h1`
+  text-align: center;
+  font-weight: bold;
+
+  color: ${(props) => props.color || 'green'};
+`;
 
 function App() {
   useEffect(() => {
@@ -25,7 +34,7 @@ function App() {
       {/* <AlbumFeature />
       <ColorBox />
       <Counter /> */}
-      <h2>Header</h2>
+      <Title color="goldenrod">HEADING</Title>
 
       <p>
         <Link to="/todos">Todos</Link> <Link to="/albums">Albums</Link>
