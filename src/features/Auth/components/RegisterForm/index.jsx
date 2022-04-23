@@ -38,7 +38,12 @@ function RegisterFrom(props) {
   const { onSubmit } = props;
 
   const schema = yup.object().shape({
-    fullName: yup.string().required('Please enter Full Name').min(5, 'Full Name is too short'),
+    fullName: yup
+      .string()
+      .required('Please enter your full name')
+      .test('should has at least two words', 'Please enter at least two words.', (value) => {
+        return value.split(' ').length >= 2;
+      }),
   });
 
   const form = useForm({
