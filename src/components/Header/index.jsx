@@ -71,7 +71,7 @@ export default function Header() {
         disableEscapeKeyDown
       >
         <DialogContent>
-          <Register />
+          <Register closeDialog={handleClose} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
