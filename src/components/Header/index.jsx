@@ -1,4 +1,4 @@
-import { Dialog, IconButton } from '@material-ui/core';
+import { Box, Dialog, IconButton } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Close } from '@material-ui/icons';
 import CodeIcon from '@material-ui/icons/Code';
+import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
@@ -34,9 +35,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const MODE = {
+  LOGIN: 'login',
+  REGISTER: 'register',
+};
+
 export default function Header() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState(MODE.LOGIN);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -76,7 +83,26 @@ export default function Header() {
           <Close />
         </IconButton>
         <DialogContent>
-          <Register closeDialog={handleClose} />
+          {mode === MODE.REGISTER && (
+            <>
+              <Register closeDialog={handleClose} />
+              <Box textAlign="center">
+                <Button color="primary" onClick={() => setMode(MODE.LOGIN)}>
+                  Already have an account. Login here
+                </Button>
+              </Box>
+            </>
+          )}
+          {mode === MODE.LOGIN && (
+            <>
+              <Login closeDialog={handleClose} />
+              <Box textAlign="center">
+                <Button color="primary" onClick={() => setMode(MODE.REGISTER)}>
+                  Don't have an account. Register here
+                </Button>
+              </Box>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>
