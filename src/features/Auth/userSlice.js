@@ -19,7 +19,7 @@ export const login = createAsyncThunk('users/login', async (payload) => {
 
   // save data to local storage
   localStorage.setItem(StorageKeys.TOKEN, data.jwt);
-  localStorage.setItem(StorageKeys.user, JSON.stringify(data.user));
+  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user));
 
   return data.user;
 });
