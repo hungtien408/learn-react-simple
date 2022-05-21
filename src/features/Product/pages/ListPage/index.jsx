@@ -1,5 +1,6 @@
-import { Box, Container, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Box, Container, Grid, makeStyles, Paper } from '@material-ui/core';
 import productApi from 'api/productApi';
+import ProductList from 'features/Product/components/ProductList';
 import ProductSkeletonList from 'features/Product/components/ProductSkeletonList';
 import React, { useEffect, useState } from 'react';
 
@@ -9,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     width: '250px',
   },
   right: {
-    flex: '1 1 auto',
+    flex: '1 1 0',
   },
 }));
 
@@ -42,7 +43,7 @@ function ListPage(props) {
           </Grid>
           <Grid item className={classes.right}>
             <Paper elevation={0}>
-              {loading ? <ProductSkeletonList length={8} /> : <Typography>Product List</Typography>}
+              {loading ? <ProductSkeletonList length={8} /> : <ProductList data={productList} />}
             </Paper>
           </Grid>
         </Grid>
